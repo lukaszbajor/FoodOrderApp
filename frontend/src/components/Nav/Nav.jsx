@@ -3,6 +3,8 @@ import styles from "./Nav.module.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from "../../assets/images/logoburger.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Nav() {
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -18,7 +20,10 @@ function Nav() {
 			<div className={styles.btns}>
 				{isAuthenticated === true ? (
 					<>
-						<div>{user.name} user</div>
+						<div className={styles.nav__userAccount}>
+							<p className={styles.nav__userName}>{user.name}</p>
+							<FontAwesomeIcon icon={faUser} className={styles.nav__userIcon} />
+						</div>
 					</>
 				) : (
 					// <>

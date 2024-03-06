@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../../store/features/auth/authSlice";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Header from "../../components/Header/Header";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -69,12 +70,9 @@ export default function Home() {
 					{/* Dodaj tutaj inne treści dla zalogowanych użytkowników */}
 				</div>
 			) : (
-				<div>
-					<h2>Witaj na stronie głównej!</h2>
-					{/* Dodaj tutaj inne treści dla niezalogowanych użytkowników */}
-				</div>
+				""
 			)}
-			<p>Menu</p>
+			<Header />
 		</div>
 	);
 }
