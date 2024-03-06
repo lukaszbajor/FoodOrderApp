@@ -4,27 +4,30 @@ import styles from "./Header.module.scss";
 // import { useSelector } from "react-redux";
 // import logo from "../../assets/images/logoburger.png";
 
-function Nav() {
+function Header() {
 	// const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	// const user = useSelector((state) => state.auth.user);
 	return (
 		<header className={styles.header}>
-			<h1 className={styles.title}>Wiamy w naszej restauracji!</h1>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil deserunt
-				doloremque ducimus deleniti rem optio, debitis veniam ut quisquam,
-				maiores dolorum repellendus accusamus, quasi laborum quibusdam? Eveniet
-				aperiam voluptate delectus. Sint alias omnis rem rerum voluptatibus
-				expedita ipsam quas, doloribus accusamus sapiente perspiciatis amet
-				eaque fuga est ab! Aliquid earum excepturi exercitationem placeat sit,
-				dicta in iusto nobis repellendus repudiandae. Aspernatur alias minima
-				distinctio perferendis beatae quis eum quaerat quibusdam error neque,
-				nam sint, dolor ipsum ullam ab nobis fugit porro. Illo error vel hic,
-				odit facilis id quaerat repellat.
-			</p>
-			<Button>Sprawdź menu</Button>
+			<div className={styles.header__wrap}>
+				<p className={`${styles.header__text} ${styles["header__text--name"]}`}>
+					Food Order App
+				</p>
+				<h1 className={styles.header__title}>
+					Mamy sposób na... <br /> Dużego głoda!
+				</h1>
+				<p className={styles.header__text}>
+					Najlepiej oceniane jedzenie w całej okolicy!
+				</p>
+				{/* <div className={styles.header__features}>
+				<div className={styles.header__feature}>C1</div>
+				<div className={styles.header__feature}>C2</div>
+				<div className={styles.header__feature}>C3</div>
+			</div> */}
+				<Button className={styles.header__orderBtn}>Zamówienie online!</Button>
+			</div>
 		</header>
 	);
 }
 
-export default Nav;
+export default Header;

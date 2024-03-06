@@ -1,0 +1,48 @@
+.header {
+	background-image: url("../../assets/images/eksdi.jpg");
+	background-position: center;
+	background-size: cover;
+	&__wrap {
+		margin: 0 auto;
+		max-width: 1200px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	&__title {
+		font-weight: 700;
+		font-size: 2rem;
+		color: #ffc404;
+		letter-spacing: 0.2rem;
+		text-transform: uppercase;
+		text-align: center;
+	}
+	&__text {
+		font-size: 1.6rem;
+		text-align: center;
+		text-transform: uppercase;
+		&--name {
+			padding-top: 4em;
+		}
+	}
+	&__orderBtn {
+		margin: 4em 0;
+		padding: 1em 2em;
+		text-transform: uppercase;
+		font-family: "Lato", sans-serif;
+		border-radius: 4px;
+		border: none;
+		background-color: #1b8231;
+		color: white;
+		letter-spacing: 2px;
+	}
+}
+
+@media (min-width: 992px) {
+	.header {
+		&__orderBtn {
+			cursor: pointer;
+		}
+	}
+}

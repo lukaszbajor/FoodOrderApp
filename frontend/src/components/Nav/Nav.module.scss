@@ -1,8 +1,12 @@
 .nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	background-color: rgb(233, 155, 0);
+	&__wrap {
+		margin: 0 auto;
+		max-width: 1200px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 	&__logoBox {
 		display: flex;
 		text-decoration: none;
@@ -74,6 +78,9 @@
 	&__list.showMenu {
 		display: block;
 	}
+	&__item {
+		letter-spacing: 2px;
+	}
 }
 
 @media (min-width: 576px) {
@@ -91,10 +98,14 @@
 		}
 		&__list {
 			display: flex;
+			width: 300px;
+			justify-content: space-between;
+			align-items: center;
 			position: unset;
 			bottom: unset;
 			right: unset;
 			background-color: unset;
+			cursor: pointer;
 		}
 	}
 }
