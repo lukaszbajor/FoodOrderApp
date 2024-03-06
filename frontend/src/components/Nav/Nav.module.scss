@@ -34,6 +34,12 @@
 		font-size: 14px;
 		cursor: pointer;
 		color: white;
+		&--login {
+			padding: 12px;
+		}
+	}
+	&__btns {
+		display: flex;
 	}
 	a {
 		text-decoration: none;
@@ -45,14 +51,20 @@
 	}
 	&__userName {
 		font-size: 20px;
+		color: #795606;
 	}
 	&__userIcon {
 		margin: 0 10px;
 		padding: 10px;
-		width: 20px;
-		height: 20px;
-		border: 2px solid white;
+		width: 17px;
+		height: 17px;
+		border: 2px solid #795606;
 		border-radius: 50%;
+		background-color: #795606;
+	}
+	&__cartIcon {
+		width: 17px;
+		height: 17px;
 	}
 	&__burger {
 		position: fixed;
@@ -70,15 +82,20 @@
 	&__list {
 		display: none;
 		position: absolute;
-		bottom: 70px;
-		right: 90px;
+		bottom: 80px;
+		right: 70px;
+		border-radius: 4px;
 		background-color: #795606;
 		list-style: none;
 	}
 	&__list.showMenu {
-		display: block;
+		display: flex;
+		flex-direction: column;
+		// justify-content: center;
+		align-items: center;
 	}
 	&__item {
+		padding: 2em;
 		letter-spacing: 2px;
 	}
 }
@@ -98,14 +115,19 @@
 		}
 		&__list {
 			display: flex;
+			flex-direction: row !important;
 			width: 300px;
 			justify-content: space-between;
 			align-items: center;
 			position: unset;
 			bottom: unset;
 			right: unset;
+			border-radius: unset;
 			background-color: unset;
 			cursor: pointer;
+		}
+		&__item {
+			padding: unset;
 		}
 	}
 }

@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Lato:wght@400;700&display=swap");
 
 * {
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 
 body {
-	margin: 0;
 	font-family: "Raleway", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -13,7 +14,7 @@ body {
 	color: #d9e2f1;
 	min-height: 100vh;
 }
-
+/*
 #main-header {
 	display: flex;
 	justify-content: space-between;
@@ -99,14 +100,14 @@ body {
 
 .cart h2 {
 	margin: 1rem 0;
-}
+} */
 
-.cart ul {
+/* .cart ul {
 	list-style: none;
 	margin: 0.5rem 0;
 	padding: 0;
-}
-
+} */
+/*
 .modal-actions {
 	display: flex;
 	justify-content: flex-end;
@@ -249,4 +250,4 @@ body {
 		opacity: 1;
 		transform: translateY(0);
 	}
-}
+} */

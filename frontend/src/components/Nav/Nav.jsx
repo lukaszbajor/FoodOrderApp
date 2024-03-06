@@ -48,20 +48,33 @@ function Nav() {
 									icon={faUser}
 									className={styles.nav__userIcon}
 								/>
+								<Button className={styles.nav__btn}>
+									<FontAwesomeIcon
+										icon={faCartShopping}
+										className={styles.nav__cartIcon}
+									/>
+								</Button>
 							</div>
 						</>
 					) : (
-						<>
+						<div className={styles.nav__btns}>
 							<Link to="/login">
-								<Button className={styles.nav__btn}>Logowanie</Button>
+								<Button
+									className={`${styles.nav__btn} ${styles["nav__btn--login"]}`}
+								>
+									Logowanie
+								</Button>
 							</Link>
 							<Button className={styles.nav__btn}>
-								<FontAwesomeIcon icon={faCartShopping} />
+								<FontAwesomeIcon
+									icon={faCartShopping}
+									className={styles.nav__cartIcon}
+								/>
 							</Button>
 							{/* // <Link to="/register">
 						// 	<Button className={styles.nav__btn}>Rejestracja</Button>
 						// </Link> */}
-						</>
+						</div>
 					)}
 				</div>
 				<div className={styles.nav__burger}>
