@@ -43,11 +43,28 @@
 		font-size: 20px;
 	}
 	&__userIcon {
-		margin: 0 20px;
+		margin: 0 10px;
 		padding: 10px;
-		font-size: 20px;
+		width: 20px;
+		height: 20px;
 		border: 2px solid white;
 		border-radius: 50%;
+	}
+	&__burger {
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+	}
+	&__list {
+		display: none;
+		position: absolute;
+		bottom: 80px;
+		right: 100px;
+		background-color: #795606;
+		list-style: none;
+	}
+	&__list.showMenu {
+		display: block;
 	}
 }
 
@@ -55,6 +72,21 @@
 	.nav {
 		&__title {
 			display: block;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.nav {
+		&__burger {
+			display: none;
+		}
+		&__list {
+			display: flex;
+			position: unset;
+			bottom: unset;
+			right: unset;
+			background-color: unset;
 		}
 	}
 }
