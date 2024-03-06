@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from "../../assets/images/logoburger.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faPizzaSlice, faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Nav() {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -54,7 +54,11 @@ function Nav() {
 				)}
 			</div>
 			<div className={styles.nav__burger}>
-				<Button onClick={toggleMenu}>Burger</Button>
+				<FontAwesomeIcon
+					icon={faPizzaSlice}
+					className={styles.nav__burgerIcon}
+					onClick={toggleMenu}
+				/>
 			</div>
 		</nav>
 	);
