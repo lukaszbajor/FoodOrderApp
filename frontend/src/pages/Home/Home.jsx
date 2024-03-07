@@ -5,6 +5,7 @@ import { login, logout } from "../../store/features/auth/authSlice";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Header from "../../components/Header/Header";
+import InfoSection from "../../components/InfoSection/InfoSection";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -59,7 +60,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div>
+		<>
 			{isLoading ? (
 				<div>Ładowanie...</div>
 			) : isAuthenticated && user ? (
@@ -73,6 +74,7 @@ export default function Home() {
 				""
 			)}
 			<Header />
-		</div>
+			<InfoSection />
+		</>
 	);
 }
