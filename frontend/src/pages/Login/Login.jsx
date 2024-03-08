@@ -146,9 +146,7 @@ export const Login = () => {
 				<h1 className={styles.login__title}>Logowanie</h1>
 				<form className={styles.login__form} onSubmit={handleSubmit}>
 					<div>
-						<label htmlFor="login">
-							<strong>Login:</strong>
-						</label>
+						<label htmlFor="login">Login:</label>
 						<input
 							type="text"
 							placeholder="Wprowadź login"
@@ -159,9 +157,7 @@ export const Login = () => {
 						/>
 					</div>
 					<div>
-						<label htmlFor="password">
-							<strong>Hasło:</strong>
-						</label>
+						<label htmlFor="password">Hasło:</label>
 						<input
 							type="password"
 							placeholder="Wprowadź hasło"
