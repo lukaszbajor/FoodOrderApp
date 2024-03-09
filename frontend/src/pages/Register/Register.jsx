@@ -3,6 +3,7 @@ import { Button } from "../../components/UI/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import styles from "./Register.module.scss";
 
 const initialState = {
 	name: "",
@@ -61,129 +62,130 @@ export const Register = () => {
 	};
 
 	return (
-		<div>
-			<div>
-				<h1> Rejestracja</h1>
-				<form onSubmit={handleSubmit}>
+		<div className={styles.register}>
+			<div className={styles.register__box}>
+				<h1 className={styles.register__title}> Rejestracja</h1>
+				<form className={styles.register__form} onSubmit={handleSubmit}>
 					<div>
-						<label htmlFor="name">
-							<strong>Imię*:</strong>
-						</label>
+						<label htmlFor="name">Imię*:</label>
 						<input
 							type="text"
 							placeholder="Wprowadź imię"
 							name="name"
 							value={state.name}
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
 					</div>
 					<div>
-						<label htmlFor="surname">
-							<strong>Nazwisko:</strong>
-						</label>
+						<label htmlFor="surname">Nazwisko:</label>
 						<input
 							type="text"
 							placeholder="Wprowadź nazwisko"
 							name="surname"
 							value={state.surname}
+							className={styles.register__input}
 							onChange={handleChange}
 						/>
 					</div>
 					<div>
-						<label htmlFor="login">
-							<strong>Login*:</strong>
-						</label>
+						<label htmlFor="login">Login*:</label>
 						<input
 							type="text"
 							placeholder="Wprowadź login"
 							name="login"
 							value={state.login}
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
 					</div>
 					<div>
-						<label htmlFor="email">
-							<strong>E-mail*:</strong>
-						</label>
+						<label htmlFor="email">E-mail*:</label>
 						<input
 							type="email"
 							placeholder="Wprowadź email"
 							name="email"
 							value={state.email}
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
 					</div>
 					<div>
-						<label htmlFor="password">
-							<strong>Hasło*:</strong>
-						</label>
+						<label htmlFor="password">Hasło*:</label>
 						<input
 							type="password"
 							placeholder="Wprowadź hasło"
 							name="password"
 							value={state.password}
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
 					</div>
 					<div>
-						<label htmlFor="repeatPassword">
-							<strong>Powtórz hasło*:</strong>
-						</label>
+						<label htmlFor="repeatPassword">Powtórz hasło*:</label>
 						<input
 							type="password"
 							placeholder="Wprowadź hasło ponownie"
 							name="repeatPassword"
 							value={state.repeatPassword}
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
 					</div>
 					<div>
-						<label htmlFor="date">
-							<strong>Data urodzenia*:</strong>
-						</label>
+						<label htmlFor="date">Data urodzenia*:</label>
 						<input
 							type="date"
 							placeholder="Wprowadź datę urodzin"
 							name="date"
 							value={state.date}
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
 					</div>
 					<div>
-						<label htmlFor="sex">
-							<strong>Wybierz płeć*:</strong>
-						</label>
+						<label htmlFor="sex">Wybierz płeć*:</label>
 						<input
 							type="radio"
 							name="sex"
 							value="K"
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
-						Kobieta
+						<span>Kobieta</span>
 						<input
 							type="radio"
 							name="sex"
 							value="M"
+							className={styles.register__input}
 							onChange={handleChange}
 							required
 						/>
-						Męższczyzna
+						<span>Mężczyzna</span>
 					</div>
-					<Button type="submit">Wyślij</Button>
-					<Button type="button" onClick={() => dispatch({ type: "reset" })}>
-						Wyczyść
-					</Button>
+					<div className={styles.register__buttons}>
+						<Button className={styles.register__button} type="submit">
+							Wyślij
+						</Button>
+						<Button
+							type="button"
+							className={styles.register__button}
+							onClick={() => dispatch({ type: "reset" })}
+						>
+							Wyczyść
+						</Button>
+					</div>
+					<p className={styles.register__text}>
+						Masz konto? <Link to="/login">Zaloguj się!</Link>
+					</p>
 				</form>
-				<p>
-					Masz konto? <Link to="/login">Zaloguj się!</Link>
-				</p>
 			</div>
 		</div>
 	);

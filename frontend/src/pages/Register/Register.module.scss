@@ -1,4 +1,4 @@
-.login {
+.register {
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
@@ -36,6 +36,12 @@
 		font-size: 1.8rem;
 		color: white;
 	}
+	span {
+		font-size: 1.8rem;
+		// font-weight: 700;
+		// color: #2c2306;
+	}
+
 	&__buttons {
 		display: flex;
 		justify-content: center;
