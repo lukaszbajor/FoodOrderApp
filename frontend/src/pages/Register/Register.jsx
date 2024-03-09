@@ -172,7 +172,7 @@ export const Register = () => {
 					</div>
 					<div className={styles.register__buttons}>
 						<Button className={styles.register__button} type="submit">
-							Wyślij
+							Zarejestruj
 						</Button>
 						<Button
 							type="button"

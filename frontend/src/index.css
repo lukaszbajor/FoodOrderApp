@@ -12,8 +12,6 @@ html {
 
 body {
 	font-family: "Raleway", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	/* background: linear-gradient(#29251c); */
 	color: white;
 	min-height: 100vh;

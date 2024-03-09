@@ -17,6 +17,8 @@ function Nav() {
 	const toggleMenu = () => {
 		setIsMenuVisible(!isMenuVisible);
 	};
+	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
+	const cartLength = cart.length;
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const user = useSelector((state) => state.auth.user);
 	return (
@@ -70,6 +72,7 @@ function Nav() {
 									icon={faCartShopping}
 									className={styles.nav__cartIcon}
 								/>
+								<div className={styles.nav__cart}>{cartLength}</div>
 							</Button>
 							{/* // <Link to="/register">
 						// 	<Button className={styles.nav__btn}>Rejestracja</Button>
