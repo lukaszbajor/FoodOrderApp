@@ -16,6 +16,12 @@
 		border-radius: 4px;
 		border: 2px solid white;
 	}
+	&__inputBox {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
 	&__title {
 		padding: 1em 0;
 		font-size: 4.5rem;
@@ -26,7 +32,7 @@
 	}
 	&__input {
 		margin: 0.5em;
-		padding: 0.3em 0.2em;
+		padding: 0.7em 0.3em;
 		// background: none;
 		background-color: #69561a;
 		border: none;

@@ -66,7 +66,7 @@ export const Register = () => {
 			<div className={styles.register__box}>
 				<h1 className={styles.register__title}> Rejestracja</h1>
 				<form className={styles.register__form} onSubmit={handleSubmit}>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="name">Imię*:</label>
 						<input
 							type="text"
@@ -78,7 +78,7 @@ export const Register = () => {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="surname">Nazwisko:</label>
 						<input
 							type="text"
@@ -89,7 +89,7 @@ export const Register = () => {
 							onChange={handleChange}
 						/>
 					</div>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="login">Login*:</label>
 						<input
 							type="text"
@@ -101,7 +101,7 @@ export const Register = () => {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="email">E-mail*:</label>
 						<input
 							type="email"
@@ -113,7 +113,7 @@ export const Register = () => {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="password">Hasło*:</label>
 						<input
 							type="password"
@@ -125,7 +125,7 @@ export const Register = () => {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="repeatPassword">Powtórz hasło*:</label>
 						<input
 							type="password"
@@ -137,7 +137,7 @@ export const Register = () => {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.register__inputBox}>
 						<label htmlFor="date">Data urodzenia*:</label>
 						<input
 							type="date"
@@ -149,8 +149,8 @@ export const Register = () => {
 							required
 						/>
 					</div>
-					<div>
-						<label htmlFor="sex">Wybierz płeć*:</label>
+					<div className={styles.register__inputRadioBox}>
+						<label htmlFor="sex">Płeć*:</label>
 						<input
 							type="radio"
 							name="sex"

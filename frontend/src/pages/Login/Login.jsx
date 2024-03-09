@@ -145,7 +145,7 @@ export const Login = () => {
 			<div className={styles.login__box}>
 				<h1 className={styles.login__title}>Logowanie</h1>
 				<form className={styles.login__form} onSubmit={handleSubmit}>
-					<div>
+					<div className={styles.login__inputBox}>
 						<label htmlFor="login">Login:</label>
 						<input
 							type="text"
