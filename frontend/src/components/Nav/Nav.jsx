@@ -10,9 +10,11 @@ import {
 	faPizzaSlice,
 	faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import Cart from "../Cart/Cart";
 
 function Nav() {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
+	const [showCart, setShowCart] = useState(false);
 
 	const toggleMenu = () => {
 		setIsMenuVisible(!isMenuVisible);
@@ -67,7 +69,10 @@ function Nav() {
 									Logowanie
 								</Button>
 							</Link>
-							<Button className={styles.nav__btn}>
+							<Button
+								className={styles.nav__btn}
+								onClick={() => setShowCart(!showCart)}
+							>
 								<FontAwesomeIcon
 									icon={faCartShopping}
 									className={styles.nav__cartIcon}
@@ -77,6 +82,7 @@ function Nav() {
 							{/* // <Link to="/register">
 						// 	<Button className={styles.nav__btn}>Rejestracja</Button>
 						// </Link> */}
+							{showCart && <Cart />}
 						</div>
 					)}
 				</div>

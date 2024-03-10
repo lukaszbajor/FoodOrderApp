@@ -1,0 +1,32 @@
+.cart {
+	display: flex;
+	flex-direction: column;
+	width: 340px;
+	position: absolute;
+	top: 55px;
+	right: 10px;
+	border: 1px solid white;
+	border-radius: 4px;
+	background-color: #69561a;
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 1em;
+		padding: 1em;
+	}
+	&__title {
+		padding: 0.5em;
+		font-size: 2rem;
+		text-align: center;
+	}
+	&__count,
+	&__value {
+		font-size: 1.6rem;
+	}
+	&__items {
+		font-size: 1.6rem;
+		padding: 1em;
+		background-color: rgb(233, 155, 0);
+		text-align: center;
+	}
+}
