@@ -52,12 +52,17 @@ function Nav() {
 									icon={faUser}
 									className={styles.nav__userIcon}
 								/>
-								<Button className={styles.nav__btn}>
+								<Button
+									className={styles.nav__btn}
+									onClick={() => setShowCart(!showCart)}
+								>
 									<FontAwesomeIcon
 										icon={faCartShopping}
 										className={styles.nav__cartIcon}
 									/>
+									<div className={styles.nav__cart}>{cartLength}</div>
 								</Button>
+								{showCart && <Cart />}
 							</div>
 						</>
 					) : (
