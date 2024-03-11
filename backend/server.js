@@ -122,7 +122,8 @@ app.get("/", (req, res) => {
 //MEALS
 
 app.get("/meals", (req, res) => {
-	const sql = "SELECT * FROM meals";
+	const sql =
+		"SELECT meals.id, meals.name, meals.category, meals.ingredients, meals.description,  GROUP_CONCAT(meals_details.size) AS sizes, GROUP_CONCAT(meals_details.price) AS prices FROM meals INNER JOIN meals_details ON meals.id = meals_details.id_meal GROUP BY meals.id";
 	db.query(sql, (err, results) => {
 		if (err) {
 			console.error("Błąd podczas pobierania produktów:", err);

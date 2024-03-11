@@ -9,22 +9,25 @@ import styles from "./Meal.module.scss";
 // } from "@fortawesome/free-solid-svg-icons";
 
 function Meal({ meal }) {
+	const sizes = meal.sizes.split(",");
+	const prices = meal.prices.split(",");
 	return (
 		<li>
 			<p>{meal.name}</p>
 			<img src="" alt="" />
-			<p>{meal.ingradients}</p>
-			<p>{meal.describe}</p>
+			<p>{meal.ingredients}</p>
+			<p>{meal.description}</p>
 			<div>
-				<p>
-					mała porcja <button>19,99</button>
-				</p>
-				<p>
-					średnia porcja <button>29,99</button>
-				</p>
-				<p>
-					duża porcja <button>39,99</button>
-				</p>
+				{sizes.map((size, index) => (
+					<p key={index}>
+						{size === "small"
+							? "Mały/a"
+							: size === "medium"
+							? "Średnia/i"
+							: "Duża/y"}
+						<button>{parseFloat(prices[index]).toFixed(2)} zł</button>
+					</p>
+				))}
 			</div>
 		</li>
 	);
