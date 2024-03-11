@@ -119,6 +119,21 @@ app.get("/", (req, res) => {
 	}
 });
 
+//MEALS
+
+app.get("/meals", (req, res) => {
+	const sql = "SELECT * FROM meals";
+	db.query(sql, (err, results) => {
+		if (err) {
+			console.error("Błąd podczas pobierania produktów:", err);
+			return returnMsg(res, "Błąd serwera podczas pobierania produktów!", 500);
+		}
+		return returnMsg(res, "Pobrano produkty pomyślnie!", 200, {
+			meals: results,
+		});
+	});
+});
+
 app.listen(5000, () => {
 	console.log("Serwer działa!");
 });

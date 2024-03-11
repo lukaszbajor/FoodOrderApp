@@ -6,6 +6,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Header from "../../components/Header/Header";
 import InfoSection from "../../components/InfoSection/InfoSection";
+import MenuSection from "../../components/MenuSection/MenuSection";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -75,6 +76,7 @@ export default function Home() {
 			)}
 			<Header />
 			<InfoSection />
+			<MenuSection />
 		</>
 	);
 }
