@@ -1,5 +1,7 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "../UI/Button/Button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/features/cart/cartSlice";
 import styles from "./Meal.module.scss";
 // import {
 // 	faCarSide,
@@ -9,8 +11,14 @@ import styles from "./Meal.module.scss";
 // } from "@fortawesome/free-solid-svg-icons";
 
 function Meal({ meal }) {
+	const dispatch = useDispatch();
 	const sizes = meal.sizes.split(",");
 	const prices = meal.prices.split(",");
+
+	const addToCartHandler = (mealName, mealPrice) => {
+		dispatch(addToCart({ name: mealName, price: mealPrice }));
+	};
+
 	return (
 		<li>
 			<p>{meal.name}</p>
@@ -25,7 +33,9 @@ function Meal({ meal }) {
 							: size === "medium"
 							? "Średnia/i"
 							: "Duża/y"}
-						<button>{parseFloat(prices[index]).toFixed(2)} zł</button>
+						<button onClick={() => addToCartHandler(meal.name, prices[index])}>
+							{parseFloat(prices[index]).toFixed(2)} zł
+						</button>
 					</p>
 				))}
 			</div>

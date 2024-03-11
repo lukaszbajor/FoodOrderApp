@@ -10,7 +10,7 @@ function Cart() {
 			<h3 className={styles.cart__title}>Twój Koszyk</h3>
 			<div className={styles.cart__info}>
 				<p className={styles.cart__count}>
-					Ilość: <strong>3</strong>
+					Ilość: <strong>{cartLength}</strong>
 				</p>
 				<p className={styles.cart__value}>
 					Wartość koszyka: <strong>347,28zł</strong>
