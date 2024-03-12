@@ -1,6 +1,6 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "../UI/Button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/features/cart/cartSlice";
 import styles from "./Meal.module.scss";
 // import {
@@ -14,10 +14,23 @@ function Meal({ meal }) {
 	const dispatch = useDispatch();
 	const sizes = meal.sizes.split(",");
 	const prices = meal.prices.split(",");
+	const cart = useSelector((state) => state.cart.cart);
 
 	const addToCartHandler = (mealName, mealPrice) => {
-		dispatch(addToCart({ name: mealName, price: mealPrice }));
+		const checkItem = cart.find(
+			(item) => item.name === mealName && item.price === mealPrice
+		);
+
+		if (checkItem) {
+			dispatch(addToCart({ id: checkItem.id, count: checkItem.count + 1 }));
+		} else {
+			dispatch(addToCart({ name: mealName, price: mealPrice }));
+		}
 	};
+	function xd() {
+		console.log(cart);
+	}
+	xd();
 
 	return (
 		<li>

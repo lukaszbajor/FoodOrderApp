@@ -17,7 +17,19 @@ function Cart() {
 				</p>
 			</div>
 			<div className={styles.cart__items}>
-				{cartLength === 0 && <p>Brak produktów w koszyku.</p>}
+				{cartLength === 0 ? (
+					<p>Brak produktów w koszyku.</p>
+				) : (
+					<ul>
+						{cart.map((item, index) => (
+							<li key={index}>
+								<p>{item.name}</p>
+								<p>{item.price}</p>
+								<p>{item.count}</p>
+							</li>
+						))}
+					</ul>
+				)}
 			</div>
 		</div>
 	);
