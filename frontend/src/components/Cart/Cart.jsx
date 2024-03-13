@@ -1,7 +1,10 @@
+import { updateCountItem } from "../../store/features/cart/cartSlice";
+import { Button } from "../UI/Button/Button";
 import styles from "./Cart.module.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function Cart() {
+	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
 	const cartLength = cart.length;
 
@@ -25,7 +28,19 @@ function Cart() {
 							<li key={index}>
 								<p>{item.name}</p>
 								<p>{item.price}</p>
-								<p>{item.count}</p>
+								<p>
+									{/* <Button
+										onClick={() =>
+											dispatch(
+												updateCountItem({ ...item, count: item.count + 1 })
+											)
+										}
+									>
+										+
+									</Button> */}
+									{item.count}
+								</p>
+								{/* <Button>-</Button> */}
 							</li>
 						))}
 					</ul>
