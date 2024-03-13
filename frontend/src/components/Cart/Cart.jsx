@@ -29,18 +29,38 @@ function Cart() {
 								<p>{item.name}</p>
 								<p>{item.price}</p>
 								<p>
-									{/* <Button
+									<Button
 										onClick={() =>
 											dispatch(
-												updateCountItem({ ...item, count: item.count + 1 })
+												updateCountItem(
+													cart.map((x) =>
+														x.id === item.id && x.price === item.price
+															? { ...x, count: x.count + 1 }
+															: x
+													)
+												)
 											)
 										}
 									>
 										+
-									</Button> */}
+									</Button>
 									{item.count}
 								</p>
-								{/* <Button>-</Button> */}
+								<Button
+									onClick={() =>
+										dispatch(
+											updateCountItem(
+												cart.map((x) =>
+													x.id === item.id && x.price === item.price
+														? { ...x, count: x.count - 1 }
+														: x
+												)
+											)
+										)
+									}
+								>
+									-
+								</Button>
 							</li>
 						))}
 					</ul>
