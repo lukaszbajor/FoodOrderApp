@@ -1,4 +1,9 @@
-import { updateCountItem } from "../../store/features/cart/cartSlice";
+import {
+	updateCountItem,
+	calculateTotalValue,
+	incrementItemCount,
+	decrementItemCount
+} from "../../store/features/cart/cartSlice";
 import { Button } from "../UI/Button/Button";
 import styles from "./Cart.module.scss";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,7 +11,17 @@ import { useSelector, useDispatch } from "react-redux";
 function Cart() {
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
+	// const tv = useSelector((state) => state.cart.totalValue);
 	const cartLength = cart.length;
+
+	function handleIncrementCount(mealId, mealPrice) {
+		dispatch(incrementItemCount({ mealId, mealPrice }));
+		// console.log(mealId, mealPrice, mealCount);
+	}
+	function handleDecrementCount(mealId, mealPrice) {
+		dispatch(decrementItemCount({ mealId, mealPrice }));
+		// console.log(mealId, mealPrice, mealCount);
+	}
 
 	return (
 		<div className={styles.cart}>
@@ -16,7 +31,7 @@ function Cart() {
 					Ilość: <strong>{cartLength}</strong>
 				</p>
 				<p className={styles.cart__value}>
-					Wartość koszyka: <strong>347,28zł</strong>
+					Wartość koszyka: <strong>0zł</strong>
 				</p>
 			</div>
 			<div className={styles.cart__items}>
@@ -30,34 +45,14 @@ function Cart() {
 								<p>{item.price}</p>
 								<p>
 									<Button
-										onClick={() =>
-											dispatch(
-												updateCountItem(
-													cart.map((x) =>
-														x.id === item.id && x.price === item.price
-															? { ...x, count: x.count + 1 }
-															: x
-													)
-												)
-											)
-										}
+										onClick={() => handleIncrementCount(item.id, item.price)}
 									>
 										+
 									</Button>
 									{item.count}
 								</p>
 								<Button
-									onClick={() =>
-										dispatch(
-											updateCountItem(
-												cart.map((x) =>
-													x.id === item.id && x.price === item.price
-														? { ...x, count: x.count - 1 }
-														: x
-												)
-											)
-										)
-									}
+									onClick={() => handleDecrementCount(item.id, item.price)}
 								>
 									-
 								</Button>

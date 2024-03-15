@@ -19,26 +19,19 @@ function Meal({ meal }) {
 	const prices = meal.prices.split(",");
 	const cart = useSelector((state) => state.cart.cart);
 
-	const addToCartHandler = (idMeal, mealName, mealPrice) => {
+	const addToCartHandler = (mealId, mealName, mealPrice) => {
 		const checkItem = cart.find(
 			(item) =>
-				item.id === idMeal && item.name === mealName && item.price === mealPrice
+				item.id === mealId && item.name === mealName && item.price === mealPrice
 		);
 
 		if (checkItem) {
-			dispatch(
-				updateCountItem(
-					cart.map((item) =>
-						item.id === idMeal && item.price === mealPrice
-							? { ...item, count: item.count + 1 }
-							: item
-					)
-				)
-			);
+			dispatch(updateCountItem({ mealId, mealPrice }));
+			// dispatch(updateCountItem({ id: idMeal, count: checkItem.count + 1 }));
 			console.log("checkitem:" + checkItem);
 		} else {
 			dispatch(
-				addToCart({ id: idMeal, name: mealName, price: mealPrice, count: 1 })
+				addToCart({ id: mealId, name: mealName, price: mealPrice, count: 1 })
 			);
 		}
 	};
