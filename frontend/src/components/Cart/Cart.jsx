@@ -40,9 +40,9 @@ function Cart() {
 				{cartLength === 0 ? (
 					<p>Brak produktów w koszyku.</p>
 				) : (
-					<ul>
+					<ul className={styles.car__list}>
 						{cart.map((item, index) => (
-							<li key={index}>
+							<li className={styles.cart__item} key={index}>
 								<p>{item.name}</p>
 								<p>{item.price}</p>
 								<p>
@@ -54,14 +54,15 @@ function Cart() {
 										+
 									</Button>
 									{item.count}
+
+									<Button
+										onClick={() =>
+											handleDecrementCount(item.id, item.price, item.count)
+										}
+									>
+										-
+									</Button>
 								</p>
-								<Button
-									onClick={() =>
-										handleDecrementCount(item.id, item.price, item.count)
-									}
-								>
-									-
-								</Button>
 							</li>
 						))}
 					</ul>
