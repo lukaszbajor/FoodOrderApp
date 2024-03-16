@@ -15,33 +15,36 @@ const cartSlice = createSlice({
 		},
 		updateCountItem: (state, action) => {
 			// state.cart = action.payload;
-			const { mealId, mealPrice } = action.payload;
+			const { mealId, mealPrice, mealCount } = action.payload;
 			state.cart = state.cart.map((item) =>
 				item.id === mealId && item.price === mealPrice
-					? { ...item, count: item.count + 1 }
+					? { ...item, count: item.count + mealCount }
 					: item
 			);
+			console.log(typeof mealCount);
 		},
-		calculateTotalValue: (state, action) => {
-			const { price, count } = action.payload;
-			state.totalValue += price * count;
-			return state;
+		calculateTotalValue: (state) => {
+			state.totalValue = state.cart.reduce((total, item) => {
+				return total + item.price * item.count;
+			}, 0);
 		},
 		incrementItemCount: (state, action) => {
 			const { mealId, mealPrice } = action.payload;
-			state.cart = state.cart.map((item) =>
-				item.id === mealId && item.price === mealPrice
-					? { ...item, count: item.count + 1 }
-					: item
+			const itemToUpdate = state.cart.find(
+				(item) => item.id === mealId && item.price === mealPrice
 			);
+			if (itemToUpdate) {
+				itemToUpdate.count += 1;
+			}
 		},
 		decrementItemCount: (state, action) => {
 			const { mealId, mealPrice } = action.payload;
-			state.cart = state.cart.map((item) =>
-				item.id === mealId && item.price === mealPrice && item.count > 1
-					? { ...item, count: item.count - 1 }
-					: item
+			const itemToUpdate = state.cart.find(
+				(item) => item.id === mealId && item.price === mealPrice
 			);
+			if (itemToUpdate && itemToUpdate.count > 1) {
+				itemToUpdate.count -= 1;
+			}
 		},
 
 		// updateCountItem: (state, action) => {

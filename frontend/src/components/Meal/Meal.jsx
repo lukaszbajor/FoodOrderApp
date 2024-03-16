@@ -3,6 +3,7 @@ import { Button } from "../UI/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	addToCart,
+	calculateTotalValue,
 	updateCountItem,
 } from "../../store/features/cart/cartSlice";
 import styles from "./Meal.module.scss";
@@ -16,7 +17,7 @@ import styles from "./Meal.module.scss";
 function Meal({ meal }) {
 	const dispatch = useDispatch();
 	const sizes = meal.sizes.split(",");
-	const prices = meal.prices.split(",");
+	const prices = meal.prices.split(",").map((price) => parseFloat(price));
 	const cart = useSelector((state) => state.cart.cart);
 
 	const addToCartHandler = (mealId, mealName, mealPrice) => {
@@ -26,13 +27,15 @@ function Meal({ meal }) {
 		);
 
 		if (checkItem) {
-			dispatch(updateCountItem({ mealId, mealPrice }));
+			dispatch(updateCountItem({ mealId, mealPrice, mealCount: 1 }));
 			// dispatch(updateCountItem({ id: idMeal, count: checkItem.count + 1 }));
 			console.log("checkitem:" + checkItem);
+			dispatch(calculateTotalValue());
 		} else {
 			dispatch(
 				addToCart({ id: mealId, name: mealName, price: mealPrice, count: 1 })
 			);
+			dispatch(calculateTotalValue());
 		}
 	};
 	function xd() {

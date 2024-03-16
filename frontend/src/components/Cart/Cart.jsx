@@ -2,7 +2,7 @@ import {
 	updateCountItem,
 	calculateTotalValue,
 	incrementItemCount,
-	decrementItemCount
+	decrementItemCount,
 } from "../../store/features/cart/cartSlice";
 import { Button } from "../UI/Button/Button";
 import styles from "./Cart.module.scss";
@@ -11,15 +11,17 @@ import { useSelector, useDispatch } from "react-redux";
 function Cart() {
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
-	// const tv = useSelector((state) => state.cart.totalValue);
+	const totalValueCart = useSelector((state) => state.cart.totalValue);
 	const cartLength = cart.length;
 
-	function handleIncrementCount(mealId, mealPrice) {
+	function handleIncrementCount(mealId, mealPrice, mealCount) {
 		dispatch(incrementItemCount({ mealId, mealPrice }));
+		dispatch(calculateTotalValue());
 		// console.log(mealId, mealPrice, mealCount);
 	}
-	function handleDecrementCount(mealId, mealPrice) {
+	function handleDecrementCount(mealId, mealPrice, mealCount) {
 		dispatch(decrementItemCount({ mealId, mealPrice }));
+		dispatch(calculateTotalValue());
 		// console.log(mealId, mealPrice, mealCount);
 	}
 
@@ -31,7 +33,7 @@ function Cart() {
 					Ilość: <strong>{cartLength}</strong>
 				</p>
 				<p className={styles.cart__value}>
-					Wartość koszyka: <strong>0zł</strong>
+					Wartość koszyka: <strong>{totalValueCart}zł</strong>
 				</p>
 			</div>
 			<div className={styles.cart__items}>
@@ -45,14 +47,18 @@ function Cart() {
 								<p>{item.price}</p>
 								<p>
 									<Button
-										onClick={() => handleIncrementCount(item.id, item.price)}
+										onClick={() =>
+											handleIncrementCount(item.id, item.price, item.count)
+										}
 									>
 										+
 									</Button>
 									{item.count}
 								</p>
 								<Button
-									onClick={() => handleDecrementCount(item.id, item.price)}
+									onClick={() =>
+										handleDecrementCount(item.id, item.price, item.count)
+									}
 								>
 									-
 								</Button>
