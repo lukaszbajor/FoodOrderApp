@@ -33,7 +33,7 @@ function Cart() {
 					Ilość: <strong>{cartLength}</strong>
 				</p>
 				<p className={styles.cart__value}>
-					Wartość koszyka: <strong>{totalValueCart}zł</strong>
+					Wartość koszyka: <strong>{totalValueCart.toFixed(2)}zł</strong>
 				</p>
 			</div>
 			<div className={styles.cart__items}>
@@ -45,24 +45,26 @@ function Cart() {
 							<li className={styles.cart__item} key={index}>
 								<p>{item.name}</p>
 								<p>{item.price}</p>
-								<p>
+								<div className={styles.cart__btns}>
 									<Button
+										className={styles.cart__btn}
 										onClick={() =>
 											handleIncrementCount(item.id, item.price, item.count)
 										}
 									>
 										+
 									</Button>
-									{item.count}
+									<p className={styles.cart__itemCount}>{item.count}</p>
 
 									<Button
+										className={styles.cart__btn}
 										onClick={() =>
 											handleDecrementCount(item.id, item.price, item.count)
 										}
 									>
 										-
 									</Button>
-								</p>
+								</div>
 							</li>
 						))}
 					</ul>
