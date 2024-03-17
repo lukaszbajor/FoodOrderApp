@@ -24,7 +24,7 @@ function Cart() {
 				) : (
 					<ul className={styles.cart__list}>
 						{cart.map((item, index) => (
-							<CartItem item={item} />
+							<CartItem key={index} item={item} />
 						))}
 					</ul>
 				)}

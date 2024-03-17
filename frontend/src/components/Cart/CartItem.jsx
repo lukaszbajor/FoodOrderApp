@@ -34,7 +34,7 @@ function CartItem({ item }) {
 		<li className={styles.cart__wrapper}>
 			<div className={styles.cart__item}>
 				<p>{item.name}</p>
-				<p>{item.price}</p>
+				<p>{item.price} zł</p>
 				<div className={styles.cart__btns}>
 					<Button
 						className={styles.cart__btn}
