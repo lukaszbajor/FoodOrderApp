@@ -11,7 +11,7 @@ import styles from "./Meals.module.scss";
 
 function Meals({ meals }) {
 	return (
-		<ul>
+		<ul className={styles.meals}>
 			{meals.map((meal) => (
 				<Meal key={meal.id} meal={meal} />
 			))}

@@ -40,15 +40,34 @@ function MenuSection() {
 		: meals;
 
 	return (
-		<section className={styles.menu}>
+		<section id="menu" className={styles.menu}>
 			<div className={styles.menu__wrap}>
-				<div>
-					<Button onClick={() => handleCategoryFilter("pizza")}>Pizza</Button>
-					<Button onClick={() => handleCategoryFilter("burger")}>
+				<h1 className={styles.menu__title}>Menu</h1>
+				<div className={styles.menu__btns}>
+					<Button
+						className={styles.menu__btn}
+						onClick={() => handleCategoryFilter("pizza")}
+					>
+						Pizza
+					</Button>
+					<Button
+						className={styles.menu__btn}
+						onClick={() => handleCategoryFilter("burger")}
+					>
 						Burgery
 					</Button>
-					<Button onClick={() => handleCategoryFilter("fries")}>Frytki</Button>
-					<Button onClick={() => handleCategoryFilter("drink")}>Napoje</Button>
+					<Button
+						className={styles.menu__btn}
+						onClick={() => handleCategoryFilter("fries")}
+					>
+						Frytki
+					</Button>
+					<Button
+						className={styles.menu__btn}
+						onClick={() => handleCategoryFilter("drink")}
+					>
+						Napoje
+					</Button>
 				</div>
 				<div>
 					<Meals meals={filteredMeals} />

@@ -1,5 +1,32 @@
 .menu {
-	background-color: red;
+	min-height: 70vh;
+	padding: 3em 1em;
+	background-color: #c6931b;
 	&__wrap {
+		margin: 0 auto;
+		max-width: 1200px;
+		display: flex;
+		flex-direction: column;
+		// justify-content: center;
+		align-items: center;
+	}
+	&__title {
+		padding-top: 1em;
+		text-align: center;
+		font-size: 2.8rem;
+	}
+	&__btns {
+		padding-top: 4em;
+	}
+	&__btn {
+		margin: 0 0.5em;
+		padding: 1em 1em;
+		text-transform: uppercase;
+		font-family: "Lato", sans-serif;
+		border-radius: 4px;
+		border: none;
+		background-color: #795606;
+		color: white;
+		letter-spacing: 2px;
 	}
 }

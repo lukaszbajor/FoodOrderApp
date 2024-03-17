@@ -10,6 +10,7 @@ import {
 	faPizzaSlice,
 	faUser,
 } from "@fortawesome/free-solid-svg-icons";
+
 import Cart from "../Cart/Cart";
 
 function Nav() {
@@ -38,9 +39,15 @@ function Nav() {
 						isMenuVisible ? styles.showMenu : ""
 					}`}
 				>
-					<li className={styles.nav__item}>O nas</li>
-					<li className={styles.nav__item}>Menu</li>
-					<li className={styles.nav__item}>Kontakt</li>
+					<li className={styles.nav__item}>
+						<a href="#">O nas</a>
+					</li>
+					<li className={styles.nav__item}>
+						<a href="#menu">Menu</a>
+					</li>
+					<li className={styles.nav__item}>
+						<a href="#">Kontakt</a>
+					</li>
 				</ul>
 
 				<div className={styles.btns}>

@@ -7,12 +7,9 @@ import {
 	updateCountItem,
 } from "../../store/features/cart/cartSlice";
 import styles from "./Meal.module.scss";
-// import {
-// 	faCarSide,
-// 	faClock,
-// 	faLocationDot,
-// 	faPhone,
-// } from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 function Meal({ meal }) {
 	const dispatch = useDispatch();
@@ -44,29 +41,41 @@ function Meal({ meal }) {
 	xd();
 
 	return (
-		<li>
-			<p>{meal.name}</p>
-			<img src="" alt="" />
-			<p>{meal.ingredients}</p>
-			<p>{meal.description}</p>
-			<div>
+		<li className={styles.meal}>
+			<h3 className={styles.meal__name}>{meal.name}</h3>
+			<img src="" alt="" className={styles.meal__img} />
+			<p className={styles.meal__ingredients}>{meal.ingredients}</p>
+			<div className={styles.meal__sizeBox}>
 				{sizes.map((size, index) => (
-					<p key={index}>
-						{size === "small"
-							? "Mały/a"
-							: size === "medium"
-							? "Średnia/i"
-							: "Duża/y"}
-						<button
+					<div className={styles.meal__sizeItem} key={index}>
+						{size === "small" ? (
+							<p className={styles.meal__sizeType}>Mały/a</p>
+						) : size === "medium" ? (
+							<p className={styles.meal__sizeType}>Średnia/i</p>
+						) : (
+							<p className={styles.meal__sizeType}>Duża/y</p>
+						)}
+						{/* <div> */}
+						<Button
+							className={styles.meal__btn}
 							onClick={() =>
 								addToCartHandler(meal.id, meal.name, prices[index])
 							}
 						>
-							{parseFloat(prices[index]).toFixed(2)} zł
-						</button>
-					</p>
+							<p className={styles.meal__sizePrice}>
+								{parseFloat(prices[index]).toFixed(2)} zł
+							</p>
+							<FontAwesomeIcon
+								icon={faCartShopping}
+								className={styles.meal__cartIcon}
+							/>
+						</Button>
+						{/* </div> */}
+					</div>
 				))}
 			</div>
+			<p className={styles.meal__description}>{meal.description}</p>
+			<hr />
 		</li>
 	);
 }
