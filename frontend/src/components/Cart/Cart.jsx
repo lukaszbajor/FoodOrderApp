@@ -6,9 +6,18 @@ import {
 } from "../../store/features/cart/cartSlice";
 import { Button } from "../UI/Button/Button";
 import styles from "./Cart.module.scss";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faTrash,
+	faPlus,
+	faMinus,
+	faGear,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Cart() {
+	const [showDetails, setShowDetails] = useState(false);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
 	const totalValueCart = useSelector((state) => state.cart.totalValue);
@@ -40,31 +49,52 @@ function Cart() {
 				{cartLength === 0 ? (
 					<p>Brak produktów w koszyku.</p>
 				) : (
-					<ul className={styles.car__list}>
+					<ul className={styles.cart__list}>
 						{cart.map((item, index) => (
-							<li className={styles.cart__item} key={index}>
-								<p>{item.name}</p>
-								<p>{item.price}</p>
-								<div className={styles.cart__btns}>
-									<Button
-										className={styles.cart__btn}
-										onClick={() =>
-											handleIncrementCount(item.id, item.price, item.count)
-										}
-									>
-										+
-									</Button>
-									<p className={styles.cart__itemCount}>{item.count}</p>
+							<li className={styles.cart__wrapper} key={index}>
+								<div className={styles.cart__item}>
+									<p>{item.name}</p>
+									<p>{item.price}</p>
+									<div className={styles.cart__btns}>
+										<Button
+											className={styles.cart__btn}
+											onClick={() =>
+												handleIncrementCount(item.id, item.price, item.count)
+											}
+										>
+											<FontAwesomeIcon icon={faPlus} />
+										</Button>
+										<p className={styles.cart__itemCount}>{item.count}</p>
 
-									<Button
-										className={styles.cart__btn}
-										onClick={() =>
-											handleDecrementCount(item.id, item.price, item.count)
-										}
+										<Button
+											className={styles.cart__btn}
+											onClick={() =>
+												handleDecrementCount(item.id, item.price, item.count)
+											}
+										>
+											<FontAwesomeIcon icon={faMinus} />
+										</Button>
+									</div>
+								</div>
+								<div className={styles.cart__options}>
+									<div
+										className={styles.cart__r}
+										onClick={() => setShowDetails(!showDetails)}
 									>
-										-
+										<FontAwesomeIcon
+											icon={faGear}
+											className={styles.cart__settingsIcon}
+										/>
+									</div>
+									<Button className={styles.cart__removeBtn}>
+										<FontAwesomeIcon icon={faTrash} />
 									</Button>
 								</div>
+								{showDetails && (
+									<div className={styles.cart__details}>
+										Dodatkowe opcje zamówienia.
+									</div>
+								)}
 							</li>
 						))}
 					</ul>
