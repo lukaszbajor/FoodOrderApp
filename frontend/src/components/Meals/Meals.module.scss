@@ -1,5 +1,7 @@
 .meals {
-	// min-width: 1200px;
+	display: flex;
+	flex-direction: column;
 	padding-top: 3em;
 	list-style: none;
+	width: 100%;
 }

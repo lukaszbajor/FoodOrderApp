@@ -69,9 +69,9 @@ function MenuSection() {
 						Napoje
 					</Button>
 				</div>
-				<div>
+				<>
 					<Meals meals={filteredMeals} />
-				</div>
+				</>
 			</div>
 		</section>
 	);
