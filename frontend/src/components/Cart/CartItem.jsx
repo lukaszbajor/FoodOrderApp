@@ -12,6 +12,7 @@ import {
 	calculateTotalValue,
 	incrementItemCount,
 	decrementItemCount,
+	removeFromCart,
 } from "../../store/features/cart/cartSlice";
 
 import styles from "./Cart.module.scss";
@@ -28,6 +29,10 @@ function CartItem({ item }) {
 		dispatch(decrementItemCount({ mealId, mealPrice }));
 		dispatch(calculateTotalValue());
 		// console.log(mealId, mealPrice, mealCount);
+	}
+	function handleRemoveItem(mealId, mealPrice) {
+		dispatch(removeFromCart({ mealId, mealPrice }));
+		dispatch(calculateTotalValue());
 	}
 
 	return (
@@ -66,7 +71,10 @@ function CartItem({ item }) {
 						className={styles.cart__settingsIcon}
 					/>
 				</div>
-				<Button className={styles.cart__removeBtn}>
+				<Button
+					className={styles.cart__removeBtn}
+					onClick={() => handleRemoveItem(item.id, item.price)}
+				>
 					<FontAwesomeIcon icon={faTrash} />
 				</Button>
 			</div>

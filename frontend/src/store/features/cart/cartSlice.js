@@ -46,15 +46,16 @@ const cartSlice = createSlice({
 				itemToUpdate.count -= 1;
 			}
 		},
+		removeFromCart(state, action) {
+			const { mealId, mealPrice } = action.payload;
+			const indexToRemove = state.cart.findIndex(
+				(item) => item.id === mealId && item.price === mealPrice
+			);
 
-		// updateCountItem: (state, action) => {
-		// 	const { id, count } = action.payload;
-		// 	const itemToUpdate = state.cart.find((item) => item.id === id);
-		// 	if (itemToUpdate) {
-		// 		itemToUpdate.count = count;
-		// 	}
-		// },
-		removeFromCart(state) {},
+			if (indexToRemove !== -1) {
+				state.cart.splice(indexToRemove, 1);
+			}
+		},
 	},
 });
 
