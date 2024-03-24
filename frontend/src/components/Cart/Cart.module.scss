@@ -81,7 +81,7 @@
 	&__options {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: flex-end;
 		padding: 0.5em 0;
 		// flex-grow: 1;
 	}

@@ -1,4 +1,5 @@
 import { Button } from "../UI/Button/Button";
+// import CartItemDetails from "./CartItemDetails";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faTrash,
@@ -7,7 +8,7 @@ import {
 	faList,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	calculateTotalValue,
 	incrementItemCount,
@@ -18,7 +19,9 @@ import {
 import styles from "./Cart.module.scss";
 
 function CartItem({ item }) {
+	const [selectedOption, setSelectedOption] = useState("");
 	const [showDetails, setShowDetails] = useState(false);
+	const cartItems = useSelector((state) => state.cart.cart);
 	const dispatch = useDispatch();
 	function handleIncrementCount(mealId, mealPrice, mealCount) {
 		dispatch(incrementItemCount({ mealId, mealPrice }));
@@ -34,6 +37,8 @@ function CartItem({ item }) {
 		dispatch(removeFromCart({ mealId, mealPrice }));
 		dispatch(calculateTotalValue());
 	}
+
+	// let moreProducts = [];
 
 	return (
 		<li className={styles.cart__wrapper}>
@@ -62,25 +67,25 @@ function CartItem({ item }) {
 				</div>
 			</div>
 			<div className={styles.cart__options}>
-				<div
-					className={styles.cart__r}
-					onClick={() => setShowDetails(!showDetails)}
-				>
-					<FontAwesomeIcon
-						icon={faList}
-						className={styles.cart__settingsIcon}
-					/>
-				</div>
 				<Button
 					className={styles.cart__removeBtn}
 					onClick={() => handleRemoveItem(item.id, item.price)}
 				>
 					<FontAwesomeIcon icon={faTrash} />
 				</Button>
+				{/* {(item.category === "pizza" || item.category === "fries") && (
+					<div
+						className={styles.cart__r}
+						onClick={() => setShowDetails(!showDetails)}
+					>
+						<FontAwesomeIcon
+							icon={faList}
+							className={styles.cart__settingsIcon}
+						/>
+					</div>
+				)} */}
 			</div>
-			{showDetails && (
-				<div className={styles.cart__details}>Dodatkowe opcje zamówienia.</div>
-			)}
+			{/* {showDetails && <CartItemDetails item={item} />} */}
 		</li>
 	);
 }

@@ -55,7 +55,6 @@
 		height: 20px;
 		border-radius: 50%;
 		background-color: green;
-
 		cursor: default;
 	}
 
@@ -67,6 +66,7 @@
 		text-decoration: none;
 	}
 	&__userAccount {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -83,6 +83,11 @@
 		border: 2px solid #795606;
 		border-radius: 50%;
 		background-color: #795606;
+	}
+	&__userMenuBtn {
+		background: none;
+		border: none;
+		color: white;
 	}
 	&__cartIcon {
 		width: 17px;

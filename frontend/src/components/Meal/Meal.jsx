@@ -17,7 +17,7 @@ function Meal({ meal }) {
 	const prices = meal.prices.split(",").map((price) => parseFloat(price));
 	const cart = useSelector((state) => state.cart.cart);
 
-	const addToCartHandler = (mealId, mealName, mealPrice) => {
+	const addToCartHandler = (mealId, mealName, mealPrice, mealCategory) => {
 		const checkItem = cart.find(
 			(item) =>
 				item.id === mealId && item.name === mealName && item.price === mealPrice
@@ -30,13 +30,20 @@ function Meal({ meal }) {
 			dispatch(calculateTotalValue());
 		} else {
 			dispatch(
-				addToCart({ id: mealId, name: mealName, price: mealPrice, count: 1 })
+				addToCart({
+					id: mealId,
+					name: mealName,
+					price: mealPrice,
+					category: mealCategory,
+					count: 1,
+				})
 			);
 			dispatch(calculateTotalValue());
 		}
 	};
 	function xd() {
 		console.log(cart);
+		console.log(meal.category);
 	}
 	xd();
 
@@ -59,7 +66,12 @@ function Meal({ meal }) {
 						<Button
 							className={styles.meal__btn}
 							onClick={() =>
-								addToCartHandler(meal.id, meal.name, prices[index])
+								addToCartHandler(
+									meal.id,
+									meal.name,
+									prices[index],
+									meal.category
+								)
 							}
 						>
 							<p className={styles.meal__sizePrice}>

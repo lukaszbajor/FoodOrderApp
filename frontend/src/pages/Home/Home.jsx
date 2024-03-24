@@ -17,29 +17,6 @@ export default function Home() {
 
 	axios.defaults.withCredentials = true;
 
-	function handleLogout() {
-		axios
-			.get("http://localhost:5000/logout", {
-				withCredentials: true, // Przekazanie sesji w żądaniu
-			})
-			.then(() => {
-				setTimeout(() => {
-					dispatch(logout());
-				}, 2000);
-
-				Swal.fire({
-					icon: "success",
-					title: "Wylogowywanie...",
-					timer: 2000,
-					showConfirmButton: false,
-				});
-				setIsLoading(false);
-			})
-			.catch((error) => {
-				console.error("Błąd wylogowywania:", error);
-			});
-	}
-
 	useEffect(() => {
 		console.log(user);
 		setIsLoading(true);
@@ -62,18 +39,6 @@ export default function Home() {
 
 	return (
 		<>
-			{isLoading ? (
-				<div>Ładowanie...</div>
-			) : isAuthenticated && user ? (
-				<div>
-					<h2>Witaj, {user.name}!</h2>
-					<p>Nazwisko: {user.surname}</p>
-					<Button onClick={handleLogout}>Wyloguj</Button>
-					{/* Dodaj tutaj inne treści dla zalogowanych użytkowników */}
-				</div>
-			) : (
-				""
-			)}
 			<Header />
 			<InfoSection />
 			<MenuSection />

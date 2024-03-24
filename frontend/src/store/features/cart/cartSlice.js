@@ -10,8 +10,8 @@ const cartSlice = createSlice({
 	initialState,
 	reducers: {
 		addToCart: (state, action) => {
-			const { id, name, price, count } = action.payload;
-			state.cart.push({ id, name, price, count });
+			const { id, name, price, category, count } = action.payload;
+			state.cart.push({ id, name, price, category, count });
 		},
 		updateCountItem: (state, action) => {
 			// state.cart = action.payload;
@@ -54,6 +54,17 @@ const cartSlice = createSlice({
 
 			if (indexToRemove !== -1) {
 				state.cart.splice(indexToRemove, 1);
+			}
+		},
+		conf(state, action) {
+			const { mealId, mealPrice, mealCount } = action.payload;
+			const itemToConf = state.cart.find(
+				(item) => item.id === mealId && item.price === mealPrice
+			);
+			if (itemToConf) {
+				for (i = 1; i <= mealCount; i++) {
+					alert(xd);
+				}
 			}
 		},
 	},

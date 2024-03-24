@@ -12,18 +12,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Cart from "../Cart/Cart";
+import UserAccountMenu from "../UserAccountMenu/UserAccountMenu";
 
 function Nav() {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 	const [showCart, setShowCart] = useState(false);
+	const [showUserMenu, setShowUserMenu] = useState(false);
 
-	const toggleMenu = () => {
-		setIsMenuVisible(!isMenuVisible);
-	};
 	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
 	const cartLength = cart.length;
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const user = useSelector((state) => state.auth.user);
+
+	function toggleMenu() {
+		setIsMenuVisible(!isMenuVisible);
+	}
+
+	function handleShowUser() {
+		setShowUserMenu(false);
+	}
+
 	return (
 		<nav className={styles.nav}>
 			<div className={styles.nav__wrap}>
@@ -55,13 +63,24 @@ function Nav() {
 						<>
 							<div className={styles.nav__userAccount}>
 								<p className={styles.nav__userName}>{user.name}</p>
-								<FontAwesomeIcon
-									icon={faUser}
-									className={styles.nav__userIcon}
-								/>
+								<Button
+									className={styles.nav__userMenuBtn}
+									onClick={() => {
+										setShowUserMenu(!showUserMenu);
+										setShowCart(false);
+									}}
+								>
+									<FontAwesomeIcon
+										icon={faUser}
+										className={styles.nav__userIcon}
+									/>
+								</Button>
 								<Button
 									className={styles.nav__btn}
-									onClick={() => setShowCart(!showCart)}
+									onClick={() => {
+										setShowCart(!showCart);
+										setShowUserMenu(false);
+									}}
 								>
 									<FontAwesomeIcon
 										icon={faCartShopping}
@@ -70,6 +89,9 @@ function Nav() {
 									<div className={styles.nav__cart}>{cartLength}</div>
 								</Button>
 								{showCart && <Cart />}
+								{showUserMenu && (
+									<UserAccountMenu handleShowUser={handleShowUser} />
+								)}
 							</div>
 						</>
 					) : (
