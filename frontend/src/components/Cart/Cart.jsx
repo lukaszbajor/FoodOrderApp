@@ -1,11 +1,34 @@
 import styles from "./Cart.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
+import {
+	setCartItems,
+	calculateTotalValue,
+} from "../../store/features/cart/cartSlice";
+import { useEffect } from "react";
+import axios from "axios";
 
 function Cart() {
+	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart.cart); // pobieramy tablicę cart ze stanu Redux
 	const totalValueCart = useSelector((state) => state.cart.totalValue);
+	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const cartLength = cart.length;
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			axios
+				.get("http://localhost:5000/usercart")
+				.then((response) => {
+					dispatch(setCartItems(response.data.cartItems));
+					dispatch(calculateTotalValue());
+					console.log(response.data.cartItems);
+				})
+				.catch((error) => {
+					console.error("Błąd podczas pobierania koszyka:", error);
+				});
+		}
+	}, [dispatch, isAuthenticated]);
 
 	return (
 		<div className={styles.cart}>

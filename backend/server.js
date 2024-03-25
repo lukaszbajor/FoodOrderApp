@@ -135,6 +135,71 @@ app.get("/meals", (req, res) => {
 	});
 });
 
+app.post("/cart/add", (req, res) => {
+	const { count, userId, mealId, mealSize, mealPrice } = req.body;
+
+	const sql =
+		"INSERT INTO cart (count, user_id, meal_id, size, price) VALUES (?, ?, ?, ?, ?)";
+	db.query(sql, [count, userId, mealId, mealSize, mealPrice], (err, result) => {
+		if (err) {
+			console.error("Błąd podczas dodawania przedmiotu do koszyka:", err);
+			return returnMsg(
+				res,
+				"Błąd serwera podczas dodawania przedmiotu do koszyka!",
+				500
+			);
+		}
+		return returnMsg(
+			res,
+			"Przedmiot został dodany do koszyka pomyślnie!",
+			200,
+			{ result }
+		);
+	});
+});
+
+app.post("/cart/update", (req, res) => {
+	const { userId, mealId, mealSize } = req.body;
+
+	const sql = `
+        UPDATE cart
+        SET count = count + 1
+		WHERE user_id = ? AND meal_id = ? AND size = ?
+
+    `;
+
+	db.query(sql, [userId, mealId, mealSize], (err, result) => {
+		if (err) {
+			console.error("Błąd podczas aktualizacji koszyka:", err);
+			return returnMsg(res, "Błąd serwera podczas aktualizacji koszyka!", 500);
+		}
+
+		return returnMsg(res, "Pomyślnie zaktualizowano koszyk!", 200);
+	});
+});
+
+app.get("/usercart", (req, res) => {
+	const userId = req.session.userId; // Załóżmy, że ID użytkownika jest przechowywane w sesji
+	const sql = `
+        SELECT cart.*, meals.name
+        FROM cart
+        INNER JOIN meals ON cart.meal_id = meals.id
+        WHERE cart.user_id = ?
+    `;
+	db.query(sql, [userId], (err, results) => {
+		if (err) {
+			console.error(
+				"Błąd podczas pobierania produktów dla koszyka usera:",
+				err
+			);
+			return returnMsg(res, "Błąd serwera podczas pobierania produktów!", 500);
+		}
+		return returnMsg(res, "Pobrano produkty pomyślnie!", 200, {
+			cartItems: results,
+		});
+	});
+});
+
 app.listen(5000, () => {
 	console.log("Serwer działa!");
 });
